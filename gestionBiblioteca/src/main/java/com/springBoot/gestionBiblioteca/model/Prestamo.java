@@ -3,7 +3,7 @@ package com.springBoot.gestionBiblioteca.model;
 import java.util.Calendar;
 import java.util.Date;
 
-import org.springframework.format.annotation.DateTimeFormat;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.*;
 
@@ -13,10 +13,10 @@ public class Prestamo {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@DateTimeFormat(fallbackPatterns = "dd/MM/yyyy")
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	private Date fechaPrestamo;
 	
-	@DateTimeFormat(fallbackPatterns = "dd/MM/yyyy")
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	private Date fechaVencimineto;
 	
 	private static final int DIAS_PRESTAMO = 30;

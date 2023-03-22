@@ -1,5 +1,8 @@
 package com.springBoot.gestionBiblioteca.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
@@ -7,11 +10,17 @@ import jakarta.validation.constraints.NotBlank;
 public class Usuario {
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+	
 	@NotBlank
 	private String documento;
 	
 	@NotBlank
 	private String nombre;
+	
+	@OneToMany
+	private List<Prestamo> prestamos = new ArrayList<>();
 	
 	public Usuario() {
 	}

@@ -3,7 +3,7 @@ package com.springBoot.gestionBiblioteca.model;
 import jakarta.persistence.*;
 
 @Entity
-public class Multa {
+public class Multa{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;

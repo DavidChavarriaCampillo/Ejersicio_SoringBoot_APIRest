@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
 @Entity
-public class Libro {
+public class Libro{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
