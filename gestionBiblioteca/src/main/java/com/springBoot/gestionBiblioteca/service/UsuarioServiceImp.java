@@ -66,6 +66,4 @@ public class UsuarioServiceImp extends BaseServiceImp<Usuario, Integer> implemen
 			throw new Exception(e.getMessage());
 		}
 	}
-	
-	
 }

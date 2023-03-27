@@ -7,15 +7,15 @@ import jakarta.validation.constraints.NotBlank;
 public class Status {
 	@Id
 	@GeneratedValue(strategy =GenerationType.IDENTITY)
-	private Long id;
+	private Integer id;
 	
 	@NotBlank
 	private String status;
 	
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public String getStatus() {

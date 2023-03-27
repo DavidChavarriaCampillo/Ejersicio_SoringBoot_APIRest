@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.springBoot.gestionBiblioteca.model.Libro;
 import com.springBoot.gestionBiblioteca.model.Multa;
 import com.springBoot.gestionBiblioteca.model.Prestamo;
+import com.springBoot.gestionBiblioteca.model.Usuario;
 import com.springBoot.gestionBiblioteca.repository.BaseRepository;
 import com.springBoot.gestionBiblioteca.repository.MultaRepository;
 import com.springBoot.gestionBiblioteca.repository.PrestamoRepository;
@@ -36,12 +37,14 @@ public class PrestamoServiceImp extends BaseServiceImp<Prestamo, Integer> implem
 	@Transactional
 	public void registro(String documento,Libro libro) throws Exception {
 		try {
+			Usuario usuario = usuarioRepository.buscarConDocumento(documento);
 			Multa multa = new Multa();
 			multaRepository.save(multa);
 			Prestamo prestamo = new Prestamo();
 			prestamo.setLibro(libro);
 			prestamo.setMulta(multa);
 			prestamo.setUsuario(usuarioRepository.buscarConDocumento(documento));
+			usuario.setPrestamo(prestamo); 
 			prestamoRepository.save(prestamo);
 		}catch(Exception e) {
 			throw new Exception(e.getMessage());
@@ -68,8 +71,8 @@ public class PrestamoServiceImp extends BaseServiceImp<Prestamo, Integer> implem
 	public void eliminarPrestamo(Integer id) throws Exception {
 		try {
 			Prestamo prestamo = prestamoRepository.eliminarPrestamo(id);
-			prestamoRepository.delete(prestamo);
 			multaRepository.deleteById(prestamo.getMulta().getId());
+			prestamoRepository.delete(prestamo);
 		}catch(Exception e) {
 			throw new Exception(e.getMessage());
 		}

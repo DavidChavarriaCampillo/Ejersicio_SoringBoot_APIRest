@@ -14,7 +14,6 @@ public class Libro{
 	private String nombre;
 	
 	@ManyToOne
-	@NonNull
 	private Status status;
 	
 	public Libro() {

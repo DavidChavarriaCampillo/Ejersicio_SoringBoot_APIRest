@@ -44,5 +44,15 @@ public class Usuario {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}	
+	}
+
+	public List<Prestamo> getPrestamos() {
+		return prestamos;
+	}
+
+	public void setPrestamo(Prestamo prestamo) {
+		this.prestamos.add(prestamo);
+	}
+	
+	
 }

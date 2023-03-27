@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.springBoot.gestionBiblioteca.model.Libro;
+import com.springBoot.gestionBiblioteca.model.Status;
 import com.springBoot.gestionBiblioteca.repository.BaseRepository;
 import com.springBoot.gestionBiblioteca.repository.LibroRepository;
 import com.springBoot.gestionBiblioteca.repository.StatusRepository;
@@ -56,6 +57,18 @@ public class LibroServiceImp extends BaseServiceImp<Libro, Integer> implements L
 			}
 			return libroDevuelto;
 		}catch(Exception e) {
+			throw new Exception(e.getMessage());
+		}
+	}
+	
+	@Override
+	public Libro save(Libro libro) throws Exception {
+		try {
+			Status status = statusRepository.findById(1).get();
+			libro.setStatus(status);
+			libro = libroRepository.save(libro);
+			return libro;
+		}catch (Exception e) {
 			throw new Exception(e.getMessage());
 		}
 	}
